@@ -1,0 +1,35 @@
+:root {
+    --contact-form-width: 360px;
+}
+
+#purple-box {
+    position: fixed;
+    left: calc(var(--contact-form-width) * -1);
+    top: 50px;
+    width: var(--contact-form-width);
+    height: 120px;
+    background-color: purple;
+    transition: 500ms;
+    color: white;
+
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;    
+}
+
+#purple-box a {
+    color: white;
+    text-decoration: none;
+}
+
+#purple-box.show-contact-form {
+    transition: 500ms;
+    left: 0;
+}
+
+#purple-box.hide-contact-form {
+    transition: 500ms;
+}
