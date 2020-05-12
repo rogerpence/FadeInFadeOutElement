@@ -25,11 +25,8 @@
     text-decoration: none;
 }
 
-#purple-box.show-contact-form {
+#purple-box.show-fade-away {
     transition: 500ms;
     left: 0;
 }
 
-#purple-box.hide-contact-form {
-    transition: 500ms;
-}

@@ -1,47 +1,45 @@
-class ContactForm {
-    constructor() {        
-        this.contactBox = document.getElementById('purple-box');
+class FadeInFadeoutElement {
+    constructor(targetElementId, 
+                showCSSClass = 'show-fade-away',
+                secondsDurationShown = 10) {        
+        this.targetElementId = targetElementId;
+        this.contactBox = document.getElementById(this.targetElementId);
+        this.secondsDurationShown= secondsDurationShown;
+        this.showCSSCLass = 'show-fade-away';
         
         this.contactBox.addEventListener('click', (e) => {
             this.hide();
         });        
     }
     
-    show = () => {
-        const DELAY = 3000;
-        if (this.contactBox.classList.contains('show-contact-form')) {
+    showWithDelay = (secondsBeforeShowing) => {
+        setTimeout(() => {
+            this.show()
+        }, secondsBeforeShowing * 1000);        
+    }
+
+    show = (overrideDuration = this.secondsDurationShown) => {
+        if (this.contactBox.classList.contains(this.showCSSCLass)) {
             return;
         }
         
-        this.contactBox.classList.add('show-contact-form');    
-        
+        this.contactBox.classList.add(this.showCSSCLass);            
         setTimeout(() => {
-            this.contactBox.classList.remove('show-contact-form');    
-        }, DELAY)    
+            this.contactBox.classList.remove(this.showCSSCLass);    
+        }, overrideDuration * 1000)    
     }
     
     hide = () => {
-        const contactBox = document.getElementById('purple-box');
-        contactBox.classList.remove('show-contact-form');    
+        const contactBox = document.getElementById(this.targetElementId);
+        contactBox.classList.remove(this.showCSSCLass);    
     }          
 }
 
 const clicker = document.getElementById('clicker');
 clicker.addEventListener('click', (e) => {
-    (new ContactForm()).show();
+    (new FadeInFadeoutElement('purple-box')).show(10);
 });
 
-documentReady = (fn) => {
-    if (document.attachEvent ? document.readyState === "complete" :
-                               document.readyState !== "loading") {
-        fn();
-    } else {
-        document.addEventListener('DOMContentLoaded', fn);
-    }
-}
-
-documentReady(() => {
-    setTimeout(() => {
-        (new ContactForm()).show();
-    }, 5000);    
+document.addEventListener('DOMContentLoaded', () => {
+    //(new FadeInFadeoutElement('purple-box')).showWithDelay(5);
 })
