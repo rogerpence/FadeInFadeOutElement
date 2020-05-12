@@ -3,13 +3,15 @@ class FadeInFadeoutElement {
                 showCSSClass = 'show-fade-away',
                 secondsDurationShown = 10) {        
         this.targetElementId = targetElementId;
-        this.contactBox = document.getElementById(this.targetElementId);
+        this.targetElement = document.getElementById(this.targetElementId);
+        if (!this.targetElement) {
+            throw `Target element ${targetElementId} for FadeInFadeOutElement not found.`
+        }                     
+
         this.secondsDurationShown= secondsDurationShown;
         this.showCSSCLass = 'show-fade-away';
         
-        this.contactBox.addEventListener('click', (e) => {
-            this.hide();
-        });        
+        this.targetElement.addEventListener('click', this.hide);
     }
     
     showWithDelay = (secondsBeforeShowing) => {
@@ -19,25 +21,30 @@ class FadeInFadeoutElement {
     }
 
     show = (overrideDuration = this.secondsDurationShown) => {
-        if (this.contactBox.classList.contains(this.showCSSCLass)) {
+        if (this.targetElement.classList.contains(this.showCSSCLass)) {
             return;
         }
         
-        this.contactBox.classList.add(this.showCSSCLass);            
-        setTimeout(() => {
-            this.contactBox.classList.remove(this.showCSSCLass);    
-        }, overrideDuration * 1000)    
+        this.targetElement.classList.add(this.showCSSCLass);    
+        
+        if (overrideDuration > 0) {
+            setTimeout(() => {
+                this.targetElement.classList.remove(this.showCSSCLass);    
+            }, overrideDuration * 1000)    
+        }            
     }
     
     hide = () => {
-        const contactBox = document.getElementById(this.targetElementId);
-        contactBox.classList.remove(this.showCSSCLass);    
+        this.targetElement.removeEventListener('click', this.hide); 
+        this.targetElement.classList.remove(this.showCSSCLass);    
     }          
 }
 
 const clicker = document.getElementById('clicker');
 clicker.addEventListener('click', (e) => {
-    (new FadeInFadeoutElement('purple-box')).show(10);
+    let x = new FadeInFadeoutElement('cookies-msg');
+    x.show(5);
+    // (new FadeInFadeoutElement('purple-box')).show(16);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
