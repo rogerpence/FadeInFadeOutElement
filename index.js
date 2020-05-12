@@ -1,23 +1,37 @@
+class ContactForm {
+    constructor() {        
+        this.contactBox = document.getElementById('purple-box');
+        
+        this.contactBox.addEventListener('click', (e) => {
+            this.hide();
+        });        
+    }
+    
+    show = () => {
+        const DELAY = 3000;
+        if (this.contactBox.classList.contains('show-contact-form')) {
+            return;
+        }
+        
+        this.contactBox.classList.add('show-contact-form');    
+        
+        setTimeout(() => {
+            this.contactBox.classList.remove('show-contact-form');    
+        }, DELAY)    
+    }
+    
+    hide = () => {
+        const contactBox = document.getElementById('purple-box');
+        contactBox.classList.remove('show-contact-form');    
+    }          
+}
+
 const clicker = document.getElementById('clicker');
-const box = document.getElementById('purple-box');
-const closer = box.querySelector('a');
-
-clicker.addEventListener('click', e => {
-    const DELAY = 3000;
-    console.log('clicked');
-    box.classList.add('show-contact-form');    
-
-    setTimeout(() => {
-        box.classList.remove('show-contact-form');    
-    }, DELAY)    
+clicker.addEventListener('click', (e) => {
+    (new ContactForm()).show();
 });
 
-box.addEventListener('click', e => {
-    box.classList.remove('show-contact-form');    
-});
-
-
-export function documentReady(fn) {
+documentReady = (fn) => {
     if (document.attachEvent ? document.readyState === "complete" :
                                document.readyState !== "loading") {
         fn();
@@ -26,7 +40,8 @@ export function documentReady(fn) {
     }
 }
 
-setTimeout(() => {
-    box.classList.remove('show-contact-form');    
-}, DELAY)    
-
+documentReady(() => {
+    setTimeout(() => {
+        (new ContactForm()).show();
+    }, 5000);    
+})
