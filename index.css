@@ -34,27 +34,24 @@ body {
     left: 0;
 }
 
+div#cookies-msg div {
+    padding: 12px;
+}
+
 #cookies-msg {
     position: absolute;
     max-height: 0;
     overflow: hidden;
-    transition: 300ms;
+    transition: 400ms;
 
     top: 0;
     left: 0;
     width: 100%;
     background-color: gray;
     color: white;
-    padding-left: 12px;
-    padding-top: 0;
-    padding-right: 12px;
-    padding-bottom: 0;
 }
 
 #cookies-msg.show-fade-away {
-    /* display: block; */
-    transition: 300ms;
+    transition: 400ms;
     max-height: 140px;
-    padding-top: 12px;
-    padding-bottom: 12px;
 }

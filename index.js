@@ -43,7 +43,7 @@ class FadeInFadeoutElement {
 const clicker = document.getElementById('clicker');
 clicker.addEventListener('click', (e) => {
     let x = new FadeInFadeoutElement('cookies-msg');
-    x.show(5);
+    x.show(-1);
     // (new FadeInFadeoutElement('purple-box')).show(16);
 });
 
