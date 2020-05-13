@@ -1,4 +1,4 @@
-class FadeInFadeoutElement {
+class FadeInFadeOutElement {
     constructor(targetElementId, 
                 showCSSClass = 'show-fade-away',
                 secondsDurationShown = 10) {        
@@ -42,11 +42,11 @@ class FadeInFadeoutElement {
 
 const clicker = document.getElementById('clicker');
 clicker.addEventListener('click', (e) => {
-    let x = new FadeInFadeoutElement('cookies-msg');
+    let x = new FadeInFadeOutElement('cookies-msg');
     x.show(-1);
-    // (new FadeInFadeoutElement('purple-box')).show(16);
+    // (new FadeInFadeOutElement('purple-box')).show(16);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    //(new FadeInFadeoutElement('purple-box')).showWithDelay(5);
+    //(new FadeInFadeOutElement('purple-box')).showWithDelay(5);
 })
